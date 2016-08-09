@@ -10,16 +10,28 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
-            $("#contactForm").submit(function(e) {
+
+            var form = $("#contactForm");
+            var success = $('.success');
+            form.submit(function(e) {
                 var url = "app/ContactControl.php";
 
                 $.ajax({
                     type: "POST",
                     url: url,
-                    data: $("#contactForm").serialize(),
+                    data: form.serialize(),
                     success: function(data)
                     {
-                        alert(data);
+                        var response = jQuery.parseJSON(data);
+
+                        if(response.result === "ERROR"){
+                            success.css('background','#F44336');
+                            success.html('An error occured.');
+                        }
+                        success.css('visibility','visible');
+                        if(response.result === "SUCCESS"){
+                            form[0].reset();
+                        }
                     }
                 });
                 e.preventDefault();
@@ -41,7 +53,7 @@
 
 				<!-- Email -->
 				<label class="label">Email</label>
-				<input type="text" name="email" class="input" placeholder="Your email" required>
+				<input type="email" name="email" class="input" placeholder="Your email" required>
 				
 				<!-- Message -->
 				<label class="label">Message</label>
