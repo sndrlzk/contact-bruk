@@ -156,6 +156,7 @@ h1 {
 
 .success {
 	background: #4CAF50;
+	visibility:hidden;
 	height: 50px;
 	padding: 0 40px;
 	display: inline-block;
