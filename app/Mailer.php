@@ -5,11 +5,8 @@ require 'iMailer.php';
 
 class Mailer implements iMailer
 {
-    private $emailAddress = "USERNAME (eg: random@randomaddress.com)";
-    private $password = "PASSWORD";
-    private $host = "HOST";
-
     private $mailer;
+    private $emailAddress = "bruk@kephost.com";
 
     public function __construct()
     {
@@ -22,12 +19,6 @@ class Mailer implements iMailer
         $this->mailer->addReplyTo($to, $name);
         $this->mailer->addAddress($this->emailAddress);
         $this->mailer->Subject = "New message from bruk.hu";
-
-        $this->mailer->isSMTP();
-        $this->mailer->SMTPAuth = true;
-        $this->mailer->Host = $this->host;
-        $this->mailer->Username = $this->emailAddress;
-        $this->mailer->Password = $this->password;
 
         $this->mailer->Body = $message;
         $this->mailer->AltBody = $message;
