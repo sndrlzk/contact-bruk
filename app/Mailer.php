@@ -6,7 +6,7 @@ require 'iMailer.php';
 class Mailer implements iMailer
 {
     private $mailer;
-    private $emailAddress = "bruk@kephost.com";
+    private $emailAddress = "EMAIL_ADDRESS";
 
     public function __construct()
     {
